@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# produce an indexed set of thumbnails and optionally resized main photos from
+# a directory of photos
+
+fmt="jpg"
+imgsz="100%"
+tmbsz="400"
+id=1
+pfx=""
+sfx=""
+
+while [ $# -gt 0 ] ; do
+    case "$1" in
+        -h)
+            echo "usage: mkpics [options]"
+            echo " -f output format"
+            echo " -i image size"
+            echo " -t thumb size"
+            echo " -n starting id"
+            echo " -p prefix"
+            echo " -s suffix"
+            return 0
+            ;;
+        -f)
+            fmt=$2 ; shift 2 ;;
+        -i)
+            imgsz=$2 ; shift 2 ;;
+        -t)
+            tmbsz=$2 ; shift 2 ;;
+        -n)
+            id=$2 ; shift 2 ;;
+        -s)
+            sfx=$2 ; shift 2 ;;
+        -p)
+            pfx=$2 ; shift 2 ;;
+        *)
+            echo 'error: ' $1 $2
+            shift 1 ;;
+    esac
+done
+
+rm -f .picasa.ini
+mkdir final
+
+ls *.* | while read img ; do
+        echo "$img	-> $id.$fmt"
+        
+        convert $img -scale $imgsz final/$pfx$id$sfx.$fmt &
+        convert $img -scale $tmbsz final/$pfx$id\_t$sfx.$fmt &
+        
+        id=$((id+1))
+done

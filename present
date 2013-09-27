@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# execute impressive in a cool way
+
+impressive -f -g $1 -t Crossfade -T 100 --nologo $2 $3 $4

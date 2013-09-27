@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# swap two files
+
+tmpfile="tmp-$RANDOM"
+mv $1 $tmpfile
+mv $2 $1
+mv $tmpfile $2

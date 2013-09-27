@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# execute : [calculation] within a shell using python
+# this should be sourced by the shell config
+
+function c {
+    python2 -c "from math import * ; print $(echo $@ | sed s/x/\*/g)"
+}
+alias :='c' # gets rid of zsh bug (can't make : a function)

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# fast way to build an aur package in the local dir
+
+wget http://aur.archlinux.org/packages/${1:0:2}/$1/$1.tar.gz && tar -xzf $1.tar.gz && rm $1.tar.gz && cd $1 && makepkg -s

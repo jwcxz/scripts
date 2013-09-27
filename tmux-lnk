@@ -1,0 +1,17 @@
+#/bin/bash
+
+# bind window to session
+
+[[ "$MASTER" == "" ]] && MASTER=t;
+
+if [[ "$#" -eq 0 ]]; then
+    # link from master session
+    echo asdflkjasdflajsdflkajsdfkf
+    SESSION=`tmux display-message -p '#{session_name}'`
+
+    tmux set status off
+    tmux link-window -k -s "$MASTER:$SESSION" -t :0
+else
+    echo $0
+    tmux new -s "$1" $0
+fi

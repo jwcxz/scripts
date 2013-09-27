@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# reconfigure keyboard in a reasonable way
+#   - switch escape and caps lock
+#   - make the repeat rate faster and lower-latency
+
+MAPPING=`dirname $(realpath "$0")`
+
+xmodmap $MAPPING
+xset r rate 240 45

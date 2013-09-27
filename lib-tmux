@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# shortcuts for common tmux functions I use
+# source this from a shell config
+
+alias tls='tmux ls'
+alias tl='tls'
+alias tt='tmux new -A -t'
+alias tn='tmux new'
